@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5bmhdxc6ctns"]
+
+[ext_resource type="Script" uid="uid://b1k3iwk3em7m4" path="res://scenes/coffee_cup.gd" id="1_k6nsu"]
+[ext_resource type="Texture2D" uid="uid://h10v2usionl" path="res://assets/sprites/coffee_minigame/coffee_0_placeholder.png" id="2_ipkrc"]
+[ext_resource type="Texture2D" uid="uid://c1yw3msxc1rfs" path="res://assets/sprites/coffee_minigame/plate_placeholder.png" id="3_ipkrc"]
+[ext_resource type="Script" uid="uid://buvdjg8f03nud" path="res://scenes/coffee_plate.gd" id="3_vdge3"]
+[ext_resource type="Texture2D" uid="uid://bnwoke5fdpcnh" path="res://assets/sprites/coffee_minigame/machine_placeholder.png" id="5_13anl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdge3"]
+size = Vector2(104, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13anl"]
+size = Vector2(112, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhgqp"]
+
+[node name="coffee_minigame" type="Node2D"]
+
+[node name="coffee_cup" type="Area2D" parent="."]
+z_index = 1
+position = Vector2(64, 64)
+script = ExtResource("1_k6nsu")
+
+[node name="cup_Sprite2D" type="Sprite2D" parent="coffee_cup"]
+z_index = 1
+position = Vector2(64, 64)
+scale = Vector2(8, 8)
+texture = ExtResource("2_ipkrc")
+
+[node name="Button" type="Button" parent="coffee_cup/cup_Sprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -7.0
+offset_top = -4.0
+offset_right = 6.0
+offset_bottom = 7.0
+
+[node name="cup_CollisionShape2D" type="CollisionShape2D" parent="coffee_cup"]
+z_index = 1
+position = Vector2(60, 76)
+shape = SubResource("RectangleShape2D_vdge3")
+
+[node name="coffee_plate" type="Area2D" parent="."]
+position = Vector2(555, 332)
+script = ExtResource("3_vdge3")
+
+[node name="plate_Sprite2D" type="Sprite2D" parent="coffee_plate"]
+scale = Vector2(8, 8)
+texture = ExtResource("3_ipkrc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="coffee_plate"]
+shape = SubResource("RectangleShape2D_13anl")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(281.04544, 178.64853)
+scale = Vector2(8, 8)
+texture = ExtResource("5_13anl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_yhgqp")
+
+[connection signal="button_down" from="coffee_cup/cup_Sprite2D/Button" to="coffee_cup" method="_on_button_button_down"]
+[connection signal="button_up" from="coffee_cup/cup_Sprite2D/Button" to="coffee_cup" method="_on_button_button_up"]
+[connection signal="area_entered" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_area_entered"]
+[connection signal="area_exited" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_area_exited"]
+[connection signal="mouse_entered" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_mouse_entered"]
+[connection signal="mouse_entered" from="coffee_plate" to="coffee_plate" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_mouse_exited"]
