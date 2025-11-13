@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5bmhdxc6ctns"]
+[gd_scene load_steps=14 format=3 uid="uid://c5bmhdxc6ctns"]
 
 [ext_resource type="Script" uid="uid://b1k3iwk3em7m4" path="res://scenes/coffee_cup.gd" id="1_k6nsu"]
 [ext_resource type="Texture2D" uid="uid://h10v2usionl" path="res://assets/sprites/coffee_minigame/coffee_0_placeholder.png" id="2_ipkrc"]
+[ext_resource type="Script" uid="uid://dnk0x1oecr2rb" path="res://scenes/cup_sprite_2d.gd" id="3_dg7i4"]
 [ext_resource type="Texture2D" uid="uid://c1yw3msxc1rfs" path="res://assets/sprites/coffee_minigame/plate_placeholder.png" id="3_ipkrc"]
 [ext_resource type="Script" uid="uid://buvdjg8f03nud" path="res://scenes/coffee_plate.gd" id="3_vdge3"]
 [ext_resource type="Texture2D" uid="uid://bnwoke5fdpcnh" path="res://assets/sprites/coffee_minigame/machine_placeholder.png" id="5_13anl"]
+[ext_resource type="Script" uid="uid://ctmg8nqqlqjd6" path="res://scenes/coffee_machine.gd" id="6_vfmh3"]
+[ext_resource type="Script" uid="uid://q74043h2psu0" path="res://scenes/coffee_milk.gd" id="8_67dsn"]
+[ext_resource type="Texture2D" uid="uid://d2vbuucrywsmv" path="res://assets/sprites/coffee_minigame/milk_placeholder.png" id="8_vfmh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdge3"]
 size = Vector2(104, 88)
@@ -13,6 +17,10 @@ size = Vector2(104, 88)
 size = Vector2(112, 112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhgqp"]
+size = Vector2(235, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67dsn"]
+size = Vector2(15.75, 31.75)
 
 [node name="coffee_minigame" type="Node2D"]
 
@@ -26,8 +34,9 @@ z_index = 1
 position = Vector2(64, 64)
 scale = Vector2(8, 8)
 texture = ExtResource("2_ipkrc")
+script = ExtResource("3_dg7i4")
 
-[node name="Button" type="Button" parent="coffee_cup/cup_Sprite2D"]
+[node name="cup_button" type="Button" parent="coffee_cup/cup_Sprite2D"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -7.0
 offset_top = -4.0
@@ -50,20 +59,62 @@ texture = ExtResource("3_ipkrc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coffee_plate"]
 shape = SubResource("RectangleShape2D_13anl")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="coffee_machine" type="Area2D" parent="."]
+position = Vector2(225, -20)
+script = ExtResource("6_vfmh3")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="coffee_machine"]
 position = Vector2(281.04544, 178.64853)
 scale = Vector2(8, 8)
 texture = ExtResource("5_13anl")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="machine_button" type="Button" parent="coffee_machine/Sprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -15.75568
+offset_top = -7.581066
+offset_right = 13.99432
+offset_bottom = 2.2939339
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="coffee_machine"]
+position = Vector2(274.5, 150)
 shape = SubResource("RectangleShape2D_yhgqp")
 
-[connection signal="button_down" from="coffee_cup/cup_Sprite2D/Button" to="coffee_cup" method="_on_button_button_down"]
-[connection signal="button_up" from="coffee_cup/cup_Sprite2D/Button" to="coffee_cup" method="_on_button_button_up"]
+[node name="coffeemachinetimer" type="Timer" parent="coffee_machine"]
+wait_time = 5.0
+one_shot = true
+
+[node name="coffee_milk" type="Area2D" parent="."]
+position = Vector2(900, 250)
+scale = Vector2(8, 8)
+script = ExtResource("8_67dsn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="coffee_milk"]
+position = Vector2(-0.125, 0)
+shape = SubResource("RectangleShape2D_67dsn")
+
+[node name="Sprite2D" type="Sprite2D" parent="coffee_milk"]
+texture = ExtResource("8_vfmh3")
+
+[node name="milk_button" type="Button" parent="coffee_milk/Sprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -15.625
+offset_right = 8.0
+offset_bottom = 16.5
+
+[node name="milktimer" type="Timer" parent="coffee_milk"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="button_down" from="coffee_cup/cup_Sprite2D/cup_button" to="coffee_cup" method="_on_button_button_down"]
+[connection signal="button_up" from="coffee_cup/cup_Sprite2D/cup_button" to="coffee_cup" method="_on_button_button_up"]
 [connection signal="area_entered" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_area_entered"]
 [connection signal="area_exited" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_area_exited"]
 [connection signal="mouse_entered" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_mouse_entered"]
 [connection signal="mouse_entered" from="coffee_plate" to="coffee_plate" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_mouse_exited"]
+[connection signal="pressed" from="coffee_machine/Sprite2D/machine_button" to="coffee_machine" method="_on_button_pressed"]
+[connection signal="timeout" from="coffee_machine/coffeemachinetimer" to="coffee_cup/cup_Sprite2D" method="_on_coffeemachinetimer_timeout"]
+[connection signal="pressed" from="coffee_milk/Sprite2D/milk_button" to="coffee_milk" method="_on_milk_button_pressed"]
+[connection signal="timeout" from="coffee_milk/milktimer" to="coffee_cup/cup_Sprite2D" method="_on_milktimer_timeout"]
+[connection signal="timeout" from="coffee_milk/milktimer" to="coffee_milk" method="_on_milktimer_timeout"]
