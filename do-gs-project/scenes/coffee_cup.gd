@@ -1,5 +1,7 @@
 extends Area2D
 
+#This script implements drag and drop for the coffe cup.
+
 @onready var coffee_plate = get_parent().get_node("coffee_plate")
 
 var dragging = false
@@ -20,6 +22,7 @@ func _on_button_button_up() -> void:
 	if cup_on_plate:
 		position = coffee_plate.plate_position - Vector2(50,70)
 
+#Using an Area2D, this script checks whether the cup is near the plate, so we can place it on the plate.
 
 func _on_coffee_plate_area_entered(area: Area2D) -> void:
 	cup_on_plate = true

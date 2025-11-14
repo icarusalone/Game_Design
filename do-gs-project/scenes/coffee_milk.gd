@@ -6,13 +6,11 @@ var pressed = false
 
 
 func _on_milktimer_timeout() -> void:
-	print("test2")
-	pressed = false
+	pressed = false #after the milk has been added we can click the milk again
 
 
 func _on_milk_button_pressed() -> void:
-	print("test3")
-	if pressed == false:
+	if pressed == false: #so we cant start adding mil again while adding milk
 		if coffee_cup.cup_on_plate:
 			pressed = true
 			milktimer.start()
