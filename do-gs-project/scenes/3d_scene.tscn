@@ -55,7 +55,7 @@ mesh = SubResource("PlaneMesh_0rql1")
 shape = SubResource("ConcavePolygonShape3D_166uu")
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4393964, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_166uu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
