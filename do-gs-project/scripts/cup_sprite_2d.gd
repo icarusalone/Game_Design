@@ -16,7 +16,7 @@ func _on_coffeemachinetimer_timeout() -> void:
 
 func _on_milktimer_timeout() -> void:
 #depending on the previous milk level, the colour of the cup changes
-	print("test")
+	print("milktimer_timeout")
 	if level == 3:
 		self.texture = level2
 		level = 2

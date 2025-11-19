@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=3 uid="uid://pwjq3agk8sd"]
 
-[ext_resource type="Script" uid="uid://cqe724g71p3p7" path="res://scenes/player.gd" id="1_166uu"]
-[ext_resource type="Script" uid="uid://dmr2pnmpgs72r" path="res://scenes/npc.gd" id="2_2ox2i"]
-[ext_resource type="Script" uid="uid://bcboj652a071" path="res://scenes/coffee_machine_3d.gd" id="3_da8xo"]
+[ext_resource type="Script" uid="uid://bf3q7o152j88x" path="res://scripts/player.gd" id="1_da8xo"]
+[ext_resource type="Script" uid="uid://cch1yj2sn7eai" path="res://scripts/npc.gd" id="2_gqk5c"]
+[ext_resource type="Script" uid="uid://bpti484c4846p" path="res://scripts/coffee_machine_3d.gd" id="3_io1gi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0rql1"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -64,7 +64,7 @@ shape = SubResource("ConcavePolygonShape3D_166uu")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_166uu")
+script = ExtResource("1_da8xo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_2ox2i")
@@ -83,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, -1.3113416e-07, -1, 0, 3, -4.371139e-08, 0, 
 
 [node name="NPC" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -7)
-script = ExtResource("2_2ox2i")
+script = ExtResource("2_gqk5c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPC"]
 shape = SubResource("SphereShape3D_2ox2i")
@@ -114,7 +114,7 @@ layout_mode = 2
 text = "Press [E] to interact"
 
 [node name="CoffeeMachine3D" type="StaticBody3D" parent="."]
-script = ExtResource("3_da8xo")
+script = ExtResource("3_io1gi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CoffeeMachine3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 7)
