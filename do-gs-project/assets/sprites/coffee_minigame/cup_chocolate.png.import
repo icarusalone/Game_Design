@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h10v2usionl"
-path="res://.godot/imported/coffee_0_placeholder.png-d1fd9c6a2b71adf337e2ca145cd055ad.ctex"
+uid="uid://efiw0inflp"
+path="res://.godot/imported/cup_chocolate.png-e778e1667027a6c04fc6480f612a253b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/coffee_minigame/coffee_0_placeholder.png"
-dest_files=["res://.godot/imported/coffee_0_placeholder.png-d1fd9c6a2b71adf337e2ca145cd055ad.ctex"]
+source_file="res://assets/sprites/coffee_minigame/cup_chocolate.png"
+dest_files=["res://.godot/imported/cup_chocolate.png-e778e1667027a6c04fc6480f612a253b.ctex"]
 
 [params]
 

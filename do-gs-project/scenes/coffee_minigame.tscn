@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5bmhdxc6ctns"]
+[gd_scene load_steps=19 format=3 uid="uid://c5bmhdxc6ctns"]
 
 [ext_resource type="Script" uid="uid://dnh3k0e15b5pv" path="res://scripts/coffee_cup.gd" id="1_67dsn"]
-[ext_resource type="Texture2D" uid="uid://h10v2usionl" path="res://assets/sprites/coffee_minigame/coffee_0_placeholder.png" id="2_ipkrc"]
+[ext_resource type="Texture2D" path="res://assets/sprites/coffee_minigame/coffee_0_placeholder.png" id="2_ipkrc"]
 [ext_resource type="Script" uid="uid://rhddnemrui5o" path="res://scripts/cup_sprite_2d.gd" id="3_67dsn"]
 [ext_resource type="Texture2D" uid="uid://c1yw3msxc1rfs" path="res://assets/sprites/coffee_minigame/plate_placeholder.png" id="3_ipkrc"]
 [ext_resource type="Script" uid="uid://dur4nbx3r57h8" path="res://scripts/coffee_plate.gd" id="4_67dsn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dod1p4stvakrr" path="res://scripts/coffee_milk.gd" id="8_eqgwy"]
 [ext_resource type="Texture2D" uid="uid://d2vbuucrywsmv" path="res://assets/sprites/coffee_minigame/milk_placeholder.png" id="8_vfmh3"]
 [ext_resource type="Texture2D" uid="uid://dfbujqy8hl5kd" path="res://assets/sprites/coffee_minigame/syrup_chocolate.png" id="10_71nbp"]
+[ext_resource type="Script" uid="uid://cn73j4sg4ag41" path="res://scripts/chocolate_syrup.gd" id="10_kff00"]
 [ext_resource type="Texture2D" uid="uid://dymsn3rmt2lsv" path="res://assets/sprites/coffee_minigame/syrup_strawberry.png" id="11_kff00"]
 [ext_resource type="Texture2D" uid="uid://cf1bpy3ys8cru" path="res://assets/sprites/coffee_minigame/syrup_vanilla.png" id="12_ycjhj"]
 
@@ -115,6 +116,7 @@ one_shot = true
 [node name="chocolate_syrup" type="Area2D" parent="."]
 position = Vector2(100, 300)
 scale = Vector2(6, 6)
+script = ExtResource("10_kff00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="chocolate_syrup"]
 position = Vector2(0.125, 0.5)
@@ -129,6 +131,10 @@ offset_left = -6.833333
 offset_top = -5.833332
 offset_right = 7.000001
 offset_bottom = 7.0
+
+[node name="Timer" type="Timer" parent="chocolate_syrup"]
+wait_time = 0.2
+one_shot = true
 
 [node name="strawberry_syrup" type="Area2D" parent="."]
 position = Vector2(100, 400)
@@ -169,7 +175,9 @@ offset_bottom = 7.0
 [connection signal="button_down" from="coffee_cup/cup_Sprite2D/cup_button" to="coffee_cup" method="_on_button_button_down"]
 [connection signal="button_up" from="coffee_cup/cup_Sprite2D/cup_button" to="coffee_cup" method="_on_button_button_up"]
 [connection signal="area_entered" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_area_entered"]
+[connection signal="area_entered" from="coffee_plate" to="chocolate_syrup" method="_on_coffee_plate_area_entered"]
 [connection signal="area_exited" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_area_exited"]
+[connection signal="area_exited" from="coffee_plate" to="chocolate_syrup" method="_on_coffee_plate_area_exited"]
 [connection signal="mouse_entered" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_mouse_entered"]
 [connection signal="mouse_entered" from="coffee_plate" to="coffee_plate" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="coffee_plate" to="coffee_cup" method="_on_coffee_plate_mouse_exited"]
@@ -182,3 +190,6 @@ offset_bottom = 7.0
 [connection signal="pressed" from="coffee_milk/Sprite2D/milk_button" to="coffee_milk" method="_on_milk_button_pressed"]
 [connection signal="timeout" from="coffee_milk/milktimer" to="coffee_cup/cup_Sprite2D" method="_on_milktimer_timeout"]
 [connection signal="timeout" from="coffee_milk/milktimer" to="coffee_milk" method="_on_milktimer_timeout"]
+[connection signal="button_down" from="chocolate_syrup/Sprite2D/chocolate_button" to="chocolate_syrup" method="_on_chocolate_button_button_down"]
+[connection signal="button_up" from="chocolate_syrup/Sprite2D/chocolate_button" to="chocolate_syrup" method="_on_chocolate_button_button_up"]
+[connection signal="timeout" from="chocolate_syrup/Timer" to="chocolate_syrup" method="_on_timer_timeout"]

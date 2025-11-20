@@ -26,7 +26,7 @@ func _on_milk_button_button_down() -> void:
 
 func _on_milk_button_button_up() -> void:
 	if coffee_cup.cup_on_plate and milk_on_plate and not milktimer_running:
-		print("if coffee_cup.cup_on_plate and milk_on_plate and not milktimer_running")
+#		print("if coffee_cup.cup_on_plate and milk_on_plate and not milktimer_running")
 		milktimer_running = true
 		milktimer.start()
 	dragging = false

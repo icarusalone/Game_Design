@@ -7,9 +7,11 @@ extends Area2D
 var dragging = false
 var offset = Vector2(0,0)
 var cup_on_plate = false
+var allow_movement = true
 
 func _process(delta):
-	if dragging:
+#	print("Cup_on_plate" , cup_on_plate)
+	if dragging and allow_movement:
 		position = get_global_mouse_position() - offset
 
 func _on_button_button_down() -> void:
@@ -21,6 +23,7 @@ func _on_button_button_up() -> void:
 	dragging = false
 	if cup_on_plate:
 		position = coffee_plate.plate_position - Vector2(50,70)
+		allow_movement = false
 
 #Using an Area2D, this script checks whether the cup is near the plate, so we can place it on the plate.
 
@@ -28,5 +31,5 @@ func _on_coffee_plate_area_entered(area: Area2D) -> void:
 	cup_on_plate = true
 
 
-func _on_coffee_plate_area_exited(area: Area2D) -> void:
-	cup_on_plate = false
+#func _on_coffee_plate_area_exited(area: Area2D) -> void:
+#	cup_on_plate = false
