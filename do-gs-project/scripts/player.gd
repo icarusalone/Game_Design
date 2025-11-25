@@ -61,3 +61,4 @@ func _capture_mouse() -> void:
 
 func _free_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	%InteractText.hide()

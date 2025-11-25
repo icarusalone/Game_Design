@@ -47,7 +47,6 @@ size = Vector2(36.6667, 12.5)
 script = ExtResource("1_gxvqg")
 
 [node name="bg" type="TextureRect" parent="."]
-visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("1_8uys3")
