@@ -1,12 +1,12 @@
 extends StaticBody3D
 
 var makecoffee_scence = load("res://scenes/coffee_minigame.tscn")
-var makecoffee = makecoffee_scence.instantiate()
+var makecoffee
 
 #doesnt work yet
 func interact() -> void:
-	add_child(makecoffee)
+	makecoffee = makecoffee_scence.instantiate()
+	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
+	get_tree().root.add_child(makecoffee)
 	%Player._free_mouse()
-
-func _finish_coffee() -> void:
-	makecoffee.queue_free()
+	

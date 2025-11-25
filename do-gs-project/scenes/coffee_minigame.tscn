@@ -1,6 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://c5bmhdxc6ctns"]
+[gd_scene load_steps=29 format=3 uid="uid://c5bmhdxc6ctns"]
 
+[ext_resource type="Texture2D" uid="uid://cqm1p2xqbjx8w" path="res://assets/vlack.png" id="1_8uys3"]
 [ext_resource type="Script" uid="uid://dnh3k0e15b5pv" path="res://scripts/coffee_cup.gd" id="1_67dsn"]
+[ext_resource type="Script" uid="uid://bkp1ls3d2s0n6" path="res://scenes/coffee_minigame.gd" id="1_gxvqg"]
 [ext_resource type="Texture2D" uid="uid://bql36nbp8yf20" path="res://assets/sprites/coffee_minigame/cup_empty.png" id="2_kff00"]
 [ext_resource type="Script" uid="uid://rhddnemrui5o" path="res://scripts/cup_sprite_2d.gd" id="3_67dsn"]
 [ext_resource type="Texture2D" uid="uid://c1yw3msxc1rfs" path="res://assets/sprites/coffee_minigame/plate_placeholder.png" id="3_ipkrc"]
@@ -39,9 +41,16 @@ size = Vector2(13.75, 13)
 size = Vector2(13.875, 13.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxvqg"]
-size = Vector2(36.666664, 12.500004)
+size = Vector2(36.6667, 12.5)
 
 [node name="coffee_minigame" type="Node2D"]
+script = ExtResource("1_gxvqg")
+
+[node name="bg" type="TextureRect" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_8uys3")
 
 [node name="coffee_cup" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -85,16 +94,16 @@ position = Vector2(225, -20)
 script = ExtResource("6_3u56a")
 
 [node name="Sprite2D" type="Sprite2D" parent="coffee_machine"]
-position = Vector2(281.04544, 178.64853)
+position = Vector2(281.045, 178.649)
 scale = Vector2(8, 8)
 texture = ExtResource("5_13anl")
 
 [node name="machine_button" type="Button" parent="coffee_machine/Sprite2D"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -15.75568
-offset_top = -7.581066
-offset_right = 13.99432
-offset_bottom = 2.2939339
+offset_left = -15.7557
+offset_top = -7.58107
+offset_right = 13.9943
+offset_bottom = 2.29393
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="coffee_machine"]
 position = Vector2(274.5, 150)
@@ -141,9 +150,9 @@ texture = ExtResource("10_71nbp")
 
 [node name="chocolate_button" type="Button" parent="chocolate_syrup/Sprite2D"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -6.833333
-offset_top = -5.833332
-offset_right = 7.000001
+offset_left = -6.83333
+offset_top = -5.83333
+offset_right = 7.0
 offset_bottom = 7.0
 
 [node name="chocolatetimer" type="Timer" parent="chocolate_syrup"]
@@ -164,9 +173,9 @@ texture = ExtResource("11_kff00")
 
 [node name="strawberry_button" type="Button" parent="strawberry_syrup/Sprite2D"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -6.833333
-offset_top = -5.833332
-offset_right = 7.000001
+offset_left = -6.83333
+offset_top = -5.83333
+offset_right = 7.0
 offset_bottom = 7.0
 
 [node name="strawberrytimer" type="Timer" parent="strawberry_syrup"]
@@ -187,9 +196,9 @@ texture = ExtResource("12_ycjhj")
 
 [node name="vanilla_button" type="Button" parent="vanilla_syrup/Sprite2D"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -6.833333
-offset_top = -5.833332
-offset_right = 7.000001
+offset_left = -6.83333
+offset_top = -5.83333
+offset_right = 7.0
 offset_bottom = 7.0
 
 [node name="vanillatimer" type="Timer" parent="vanilla_syrup"]
@@ -221,7 +230,7 @@ scale = Vector2(6, 6)
 script = ExtResource("18_dilnk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="serve"]
-position = Vector2(0, -0.08333588)
+position = Vector2(0, -0.0833359)
 shape = SubResource("RectangleShape2D_gxvqg")
 
 [node name="Sprite2D" type="Sprite2D" parent="serve"]
@@ -229,10 +238,10 @@ texture = ExtResource("19_8uys3")
 
 [node name="serve_button" type="Button" parent="serve/Sprite2D"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -18.333328
+offset_left = -18.3333
 offset_top = -6.0
-offset_right = 18.166672
-offset_bottom = 6.3333282
+offset_right = 18.1667
+offset_bottom = 6.33333
 
 [connection signal="button_down" from="coffee_cup/cup_sprite/cup_button" to="coffee_cup" method="_on_button_button_down"]
 [connection signal="button_up" from="coffee_cup/cup_sprite/cup_button" to="coffee_cup" method="_on_button_button_up"]
@@ -267,4 +276,5 @@ offset_bottom = 6.3333282
 [connection signal="button_up" from="vanilla_syrup/Sprite2D/vanilla_button" to="vanilla_syrup" method="_on_vanilla_button_button_up"]
 [connection signal="timeout" from="vanilla_syrup/vanillatimer" to="vanilla_syrup" method="_on_vanillatimer_timeout"]
 [connection signal="pressed" from="trash/Sprite2D/Button" to="trash" method="_on_button_pressed"]
+[connection signal="pressed" from="serve/Sprite2D/serve_button" to="." method="_on_serve_button_pressed"]
 [connection signal="pressed" from="serve/Sprite2D/serve_button" to="serve" method="_on_serve_button_pressed"]
