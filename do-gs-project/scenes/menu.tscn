@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://j20jq36bda4c"]
+
+[ext_resource type="Texture2D" uid="uid://dftywxhgkdasg" path="res://assets/sprites/menu/start_0.png" id="1_con2f"]
+[ext_resource type="Script" uid="uid://c4r5a4soj7igf" path="res://scripts/start_sprite.gd" id="2_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://bbtlwxx1u1u5c" path="res://assets/sprites/menu/options_0.png" id="2_mhnvy"]
+[ext_resource type="Texture2D" uid="uid://bgwwotc7bpyx4" path="res://assets/sprites/menu/exit_0.png" id="3_4ytvr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3eks"]
+size = Vector2(31.875, 16)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="start" type="Area2D" parent="."]
+position = Vector2(576, 248)
+scale = Vector2(8, 8)
+
+[node name="start_sprite" type="Sprite2D" parent="start"]
+texture = ExtResource("1_con2f")
+script = ExtResource("2_4ytvr")
+
+[node name="Button" type="Button" parent="start/start_sprite"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -15.625
+offset_top = -8.0
+offset_right = 15.75
+offset_bottom = 7.875
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="start"]
+position = Vector2(0.0625, 0)
+shape = SubResource("RectangleShape2D_g3eks")
+
+[node name="options" type="Area2D" parent="."]
+position = Vector2(576, 398)
+scale = Vector2(8, 8)
+
+[node name="options_sprite" type="Sprite2D" parent="options"]
+texture = ExtResource("2_mhnvy")
+
+[node name="Button" type="Button" parent="options/options_sprite"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -15.625
+offset_top = -8.0
+offset_right = 15.75
+offset_bottom = 7.875
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="options"]
+position = Vector2(0.0625, 0)
+shape = SubResource("RectangleShape2D_g3eks")
+
+[node name="exit" type="Area2D" parent="."]
+position = Vector2(576, 548)
+scale = Vector2(8, 8)
+
+[node name="exit_sprite" type="Sprite2D" parent="exit"]
+texture = ExtResource("3_4ytvr")
+
+[node name="Button" type="Button" parent="exit/exit_sprite"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -15.625
+offset_top = -8.0
+offset_right = 15.75
+offset_bottom = 7.875
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit"]
+position = Vector2(0.0625, 0)
+shape = SubResource("RectangleShape2D_g3eks")
+
+[connection signal="mouse_entered" from="start" to="start/start_sprite" method="_on_start_mouse_entered"]
+[connection signal="mouse_exited" from="start" to="start/start_sprite" method="_on_start_mouse_exited"]
