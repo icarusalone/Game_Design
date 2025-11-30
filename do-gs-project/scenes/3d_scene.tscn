@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://pwjq3agk8sd"]
+[gd_scene load_steps=37 format=3 uid="uid://pwjq3agk8sd"]
 
 [ext_resource type="Script" uid="uid://bf3q7o152j88x" path="res://scripts/player.gd" id="1_da8xo"]
 [ext_resource type="Script" uid="uid://dc6210jg0qjy0" path="res://scripts/3d_control.gd" id="1_gqk5c"]
@@ -49,6 +49,8 @@ albedo_color = Color(0, 1, 0, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1fqjn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_otws4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4j3bx"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gqk5c"]
 
@@ -180,6 +182,7 @@ skeleton = NodePath("../CollisionShape3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_da8xo")
 
 [node name="EntranceBehaviour2" type="Node3D" parent="NPC2" node_paths=PackedStringArray("entrance_marker", "target_marker")]
+unique_name_in_owner = true
 script = ExtResource("4_aw15n")
 entrance_marker = NodePath("../../Cafe/EntranceMarker")
 target_marker = NodePath("../../Cafe/TargetMarker")
@@ -197,7 +200,7 @@ shape = SubResource("SphereShape3D_68u10")
 
 [node name="NPC3" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.327, 0.846, -7.909)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.327, 0.846, -6.909)
 script = ExtResource("2_gqk5c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPC3"]
@@ -212,6 +215,7 @@ skeleton = NodePath("../CollisionShape3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_da8xo")
 
 [node name="EntranceBehaviour3" type="Node3D" parent="NPC3" node_paths=PackedStringArray("entrance_marker", "target_marker")]
+unique_name_in_owner = true
 script = ExtResource("4_aw15n")
 entrance_marker = NodePath("../../Cafe/EntranceMarker")
 target_marker = NodePath("../../Cafe/TargetMarker")
@@ -229,19 +233,22 @@ shape = SubResource("SphereShape3D_68u10")
 
 [node name="NPC4" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3266025, 0.84587836, -6.9092093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.327, 0.846, -7.909)
 script = ExtResource("2_gqk5c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPC4"]
-shape = SubResource("SphereShape3D_68u10")
+transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0.3)
+shape = SubResource("CapsuleShape3D_4j3bx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NPC4"]
+transform = Transform3D(1, 0, 0, 0, 2.5, 0, 0, 0, 1.5, 0, 0, 0.3)
 visible = false
 mesh = SubResource("CapsuleMesh_da8xo")
 skeleton = NodePath("../CollisionShape3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_da8xo")
 
 [node name="EntranceBehaviour4" type="Node3D" parent="NPC4" node_paths=PackedStringArray("entrance_marker", "target_marker")]
+unique_name_in_owner = true
 script = ExtResource("4_aw15n")
 entrance_marker = NodePath("../../Cafe/EntranceMarker")
 target_marker = NodePath("../../Cafe/TargetMarker")

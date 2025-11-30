@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjk287k8u7fiu"
-path="res://.godot/imported/coffee_1_placeholder.png-acbd11593177f4ba55793c13e0b49098.ctex"
+path="res://.godot/imported/cup_coffee_2.png-7b8188b8b238b5556a5d0871854a54c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/coffee_minigame/coffee_1_placeholder.png"
-dest_files=["res://.godot/imported/coffee_1_placeholder.png-acbd11593177f4ba55793c13e0b49098.ctex"]
+source_file="res://assets/sprites/coffee_minigame/cup_coffee_2.png"
+dest_files=["res://.godot/imported/cup_coffee_2.png-7b8188b8b238b5556a5d0871854a54c3.ctex"]
 
 [params]
 

@@ -35,6 +35,12 @@ func walk_in() -> void:
 	elif Global_Values.current_npc_index == 2:
 		DialogueManager.show_dialogue_balloon(load("res://dialogues/02_01.dialogue"))
 		Global_Values.in_dialogue = true
+	elif Global_Values.current_npc_index == 3:
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/03_01.dialogue"))
+		Global_Values.in_dialogue = true
+	elif Global_Values.current_npc_index == 4:
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/04_01.dialogue"))
+		Global_Values.in_dialogue = true
 	
 func walk_back() -> void:
 	var npc = get_parent()

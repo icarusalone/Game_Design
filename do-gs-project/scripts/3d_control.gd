@@ -32,10 +32,32 @@ func _on_dialogue_manager_dialogue_ended(resource: DialogueResource) -> void:
 		_death()
 		await get_tree().create_timer(2).timeout
 		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_03.dialogue"))
+		Global_Values.in_dialogue = true
 	elif resource.resource_path.ends_with("01_03.dialogue"):
 		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_04.dialogue"))
+		Global_Values.in_dialogue = true
 	elif resource.resource_path.ends_with("01_04.dialogue"):
 		_trigger_next_npc()
+	elif resource.resource_path.ends_with("02_02.dialogue"):
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/02_03.dialogue"))
+		Global_Values.in_dialogue = true
+	elif resource.resource_path.ends_with("02_03.dialogue"):
+		%EntranceBehaviour.walk_back()
+		_trigger_next_npc()
+	elif resource.resource_path.ends_with("03_02.dialogue"):
+		var i = 0
+		while i <= 10:
+			$BlackOverlay.visible = true
+			await get_tree().create_timer(0.2).timeout
+			$BlackOverlay.visible = false
+			i += 1
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/03_03.dialogue"))
+		Global_Values.in_dialogue = true
+	elif resource.resource_path.ends_with("03_03.dialogue"):
+		%EntranceBehaviour2.walk_back()
+		_trigger_next_npc()
+	elif resource.resource_path.ends_with("04_02.dialogue"):
+		%EntranceBehaviour4.walk_back()
 
 func _process(delta):
 	if simulation_mode and Input.is_action_just_pressed("ui_accept"):  # map 'ui_accept' to T if you want
