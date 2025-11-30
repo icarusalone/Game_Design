@@ -31,7 +31,7 @@ func _on_milk_button_button_up() -> void:
 		milktimer_running = true
 		milktimer.start()
 	dragging = false
-	position = Vector2(900, 255)
+	position = Vector2(922, 308)
 
 
 func _on_area_entered(area: Area2D) -> void:

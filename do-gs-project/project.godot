@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="DoGS_Project"
-run/main_scene="uid://c5bmhdxc6ctns"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://pwjq3agk8sd"
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

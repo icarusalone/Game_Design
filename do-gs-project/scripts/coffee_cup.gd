@@ -36,4 +36,4 @@ func _delete() -> void:
 	offset = Vector2(0,0)
 	cup_on_plate = false
 	allow_movement = true
-	position = Vector2(64,64)
+	position = Vector2(142,452)

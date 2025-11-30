@@ -30,7 +30,7 @@ func _on_chocolate_button_button_up() -> void:
 		chocolatetimer_running = true
 		chocolatetimer.start()
 	dragging = false
-	position = Vector2(100, 300)
+	position = Vector2(318, 331)
 
 
 func _on_coffee_plate_area_entered(area: Area2D) -> void:

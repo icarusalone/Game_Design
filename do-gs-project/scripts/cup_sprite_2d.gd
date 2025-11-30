@@ -4,14 +4,14 @@ extends Sprite2D
 @onready var error_sound = $error_sound
 
 #different textures of the cup, higher level is less milk
-var empty = load('res://assets/sprites/coffee_minigame/cup_empty.png')
-var coffee0 = load('res://assets/sprites/coffee_minigame/cup_coffee_0.png')
-var coffee1 = load('res://assets/sprites/coffee_minigame/cup_coffee_1.png')
-var coffee2 = load('res://assets/sprites/coffee_minigame/cup_coffee_2.png')
-var milk = load('res://assets/sprites/coffee_minigame/cup_milk.png')
-var strawberry = load('res://assets/sprites/coffee_minigame/cup_strawberry.png')
-var vanilla = load('res://assets/sprites/coffee_minigame/cup_vanilla.png')
-var chocolate = load('res://assets/sprites/coffee_minigame/cup_chocolate.png')
+var empty = load("res://assets/sprites/coffee_minigame/new_assets/cupempty.png")
+var coffee0 = load("res://assets/sprites/coffee_minigame/new_assets/cupcoffee0.png")
+var coffee1 = load("res://assets/sprites/coffee_minigame/new_assets/cupcoffee1.png")
+var coffee2 = load("res://assets/sprites/coffee_minigame/new_assets/cupcoffee2.png")
+var milk = load("res://assets/sprites/coffee_minigame/new_assets/cupmilk.png")
+var strawberry = load("res://assets/sprites/coffee_minigame/new_assets/cupstrawberry.png")
+var vanilla = load("res://assets/sprites/coffee_minigame/new_assets/cupvanilla.png")
+var chocolate = load("res://assets/sprites/coffee_minigame/new_assets/cupchocolate.png")
 
 
 func _ready() -> void:

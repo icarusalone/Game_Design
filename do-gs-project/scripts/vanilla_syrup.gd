@@ -38,4 +38,4 @@ func _on_vanilla_button_button_up() -> void:
 		vanillatimer_running = true
 		vanillatimer.start()
 	dragging = false
-	position = Vector2(100, 500)
+	position = Vector2(73, 325)

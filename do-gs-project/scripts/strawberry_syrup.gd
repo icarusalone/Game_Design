@@ -36,4 +36,4 @@ func _on_strawberry_button_button_up() -> void:
 		strawberrytimer_running = true
 		strawberrytimer.start()
 	dragging = false
-	position = Vector2(100, 400)
+	position = Vector2(201, 324)
