@@ -150,20 +150,21 @@ grow_vertical = 2
 
 [node name="InteractText" type="Label" parent="CanvasLayer/BoxContainer"]
 unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 text = "Press [E] to interact"
 
 [node name="CoffeeMachine3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 5, 2.2, 2.7)
 script = ExtResource("3_io1gi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CoffeeMachine3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 7)
+visible = false
 mesh = SubResource("CapsuleMesh_gqk5c")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_io1gi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CoffeeMachine3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 7)
 shape = SubResource("CapsuleShape3D_aw15n")
 
 [node name="Cafe" parent="." instance=ExtResource("5_io1gi")]
