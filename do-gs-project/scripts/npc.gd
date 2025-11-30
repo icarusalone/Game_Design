@@ -40,8 +40,15 @@ func _on_area_exited(body):
 
 func _process(delta):
 	# Only allow interaction when the player is close enough
-	if player_in_range and Input.is_action_just_pressed("interact"):
-		start_dialogue()
+	#if player_in_range and Input.is_action_just_pressed("interact"):
+	#	start_dialogue()
+	pass
 
-func start_dialogue():
-	print("NPC: I'd like a coffee please!")   # Placeholder for now
+func interact() -> void:
+	if not Global_Values.added_coffee and not Global_Values.milkpumps >= 1 and not Global_Values.added_chocolate and not Global_Values.added_strawberry and not Global_Values.added_vanilla:
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_empty.dialogue"))
+	elif Global_Values.added_coffee and not Global_Values.added_chocolate and not Global_Values.added_strawberry and not Global_Values.added_vanilla:
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_02.dialogue"))
+	else:
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_false_order.dialogue"))
+	Global_Values.in_dialogue = true
