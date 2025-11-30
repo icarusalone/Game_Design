@@ -13,13 +13,16 @@ var npc_queue = []
 var simulation_mode = false  # Only enable key press simulation after first dialogue
 
 func _ready() -> void:
-	$good_ending.visible = false
-	$bad_ending.visible = false
+	$good_ending.visible = true
+	$good_ending.modulate.a = 0.0
+	$bad_ending.visible = true
+	$bad_ending.modulate.a = 0.0
 	
 	# Queue your NPCs in order
 	npc_queue = [npc_entrance3, npc_entrance1, npc_entrance2, npc_entrance4, npc_entrance3, npc_entrance4]
 
 	# Start initial letter dialogue
+	$BlackOverlay.modulate.a = 1.0
 	$BlackOverlay.visible = true
 	DialogueManager.show_dialogue_balloon(load("res://dialogues/00_letter_mum.dialogue"))
 	Global_Values.in_dialogue = true
@@ -30,7 +33,7 @@ func _on_dialogue_manager_dialogue_ended(resource: DialogueResource) -> void:
 	
 	# When the first dialogue finishes, hide overlay and allow simulation mode
 	if resource.resource_path.ends_with("00_letter_mum.dialogue"):
-		$BlackOverlay.visible = false
+		fade_out()
 		simulation_mode = true
 		_trigger_next_npc()
 		print("Press T to trigger NPCs one at a time.")
@@ -54,10 +57,11 @@ func _on_dialogue_manager_dialogue_ended(resource: DialogueResource) -> void:
 		_trigger_next_npc()
 	elif resource.resource_path.ends_with("03_02.dialogue"):
 		var i = 0
-		while i <= 10:
-			$BlackOverlay.visible = true
-			await get_tree().create_timer(0.2).timeout
-			$BlackOverlay.visible = false
+		while i <= 15:
+			$BlackOverlay.modulate.a = 1.0
+			await get_tree().create_timer(0.1).timeout
+			$BlackOverlay.modulate.a = 0.0
+			await get_tree().create_timer(0.1).timeout
 			i += 1
 		DialogueManager.show_dialogue_balloon(load("res://dialogues/03_03.dialogue"))
 		Global_Values.in_dialogue = true
@@ -71,12 +75,14 @@ func _on_dialogue_manager_dialogue_ended(resource: DialogueResource) -> void:
 		%final_timer.start()
 	elif resource.resource_path.ends_with("05_02.dialogue"):
 		%EntranceBehaviour3.walk_back()
-		$BlackOverlay.visible = true
-		await get_tree().create_timer(3).timeout
+		fade_in()
+		await get_tree().create_timer(6).timeout
+		fade_out()
 		_trigger_next_npc()
 	elif resource.resource_path.ends_with("06_01.dialogue"):
+		Global_Values.interactable = false
 		await get_tree().create_timer(3).timeout
-		$good_ending.visible = true
+		good_fade_in()
 
 func _process(delta):
 	if simulation_mode and Input.is_action_just_pressed("ui_accept"):  # map 'ui_accept' to T if you want
@@ -98,7 +104,7 @@ func _death():
 		%NPC3_Sprite3D.texture = wd2_sprites[i]
 		await get_tree().create_timer(0.5).timeout
 		i += 1
-	while %NPC3.position.y >= -3:
+	while %NPC3.position.y >= -10:
 		print(get_process_delta_time())
 		print(%NPC3.position.y)
 		%NPC3.position.y -= get_process_delta_time()*2
@@ -107,4 +113,21 @@ func _death():
 
 func _on_final_timer_timeout() -> void:
 	if not Global_Values.finished_final:
-		$bad_ending.visible = true
+		bade_fade_in()
+
+func fade_in():
+	var tween = create_tween()
+	tween.tween_property($BlackOverlay, "modulate:a", 1.0, 1.0) 
+
+func fade_out():
+	var tween = create_tween()
+	tween.tween_property($BlackOverlay, "modulate:a", 0.0, 1.0)
+
+func good_fade_in():
+	var tween = create_tween()
+	tween.tween_property($good_ending, "modulate:a", 1.0, 1.0) 
+	
+func bade_fade_in():
+	var tween = create_tween()
+	tween.tween_property($bad_ending, "modulate:a", 1.0, 1.0) 
+	

@@ -16,6 +16,7 @@ func _ready():
 
 # Make this function awaitable
 func walk_in() -> void:
+	Global_Values.interactable = false
 	var npc = get_parent()
 	if not npc or not target_marker:
 		push_error("walk_in: missing parent or target_marker!")
@@ -28,6 +29,7 @@ func walk_in() -> void:
 
 	# Emit signal once finished walking
 	emit_signal("npc_entered", npc)
+	Global_Values.interactable = true
 	
 	if Global_Values.current_npc_index == 1:
 		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_01.dialogue"))

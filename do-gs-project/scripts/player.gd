@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	%InteractText.hide()
-	if $Neck/Camera3D/RayCast3D.is_colliding() and not Global_Values.in_dialogue:
+	if $Neck/Camera3D/RayCast3D.is_colliding() and not Global_Values.in_dialogue and Global_Values.interactable:
 		var in_vision = $Neck/Camera3D/RayCast3D.get_collider()
 		if in_vision != null and in_vision.has_method("interact"):
 			%InteractText.show()
