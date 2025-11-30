@@ -1,9 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://pwjq3agk8sd"]
+[gd_scene load_steps=39 format=3 uid="uid://pwjq3agk8sd"]
 
 [ext_resource type="Script" uid="uid://bf3q7o152j88x" path="res://scripts/player.gd" id="1_da8xo"]
 [ext_resource type="Script" uid="uid://dc6210jg0qjy0" path="res://scripts/3d_control.gd" id="1_gqk5c"]
+[ext_resource type="Texture2D" uid="uid://gskvrr0sc3qh" path="res://assets/sprites/endings/good_ending.png" id="2_4j3bx"]
 [ext_resource type="Script" uid="uid://cch1yj2sn7eai" path="res://scripts/npc.gd" id="2_gqk5c"]
 [ext_resource type="Script" uid="uid://bpti484c4846p" path="res://scripts/coffee_machine_3d.gd" id="3_io1gi"]
+[ext_resource type="Texture2D" uid="uid://blrbxyaqvgqyc" path="res://assets/sprites/endings/bad_ending.png" id="3_jv4he"]
 [ext_resource type="Script" uid="uid://rxggklcwkagp" path="res://scripts/npc_entrance.gd" id="4_aw15n"]
 [ext_resource type="Texture2D" uid="uid://bnmoknaymdkt3" path="res://assets/sprites/npcs/goth.png" id="5_68u10"]
 [ext_resource type="PackedScene" uid="uid://bglk7n5ec18in" path="res://scenes/Cafe.glb" id="5_io1gi"]
@@ -95,6 +97,21 @@ offset_top = -7.0
 offset_right = 1161.0
 offset_bottom = 660.0
 color = Color(0, 0, 0, 1)
+
+[node name="final_timer" type="Timer" parent="3d_control"]
+unique_name_in_owner = true
+wait_time = 20.0
+one_shot = true
+
+[node name="good_ending" type="Sprite2D" parent="3d_control"]
+position = Vector2(576, 324)
+scale = Vector2(75, 75)
+texture = ExtResource("2_4j3bx")
+
+[node name="bad_ending" type="Sprite2D" parent="3d_control"]
+position = Vector2(576, 324)
+scale = Vector2(75, 75)
+texture = ExtResource("3_jv4he")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_68u10")
@@ -220,7 +237,8 @@ script = ExtResource("4_aw15n")
 entrance_marker = NodePath("../../Cafe/EntranceMarker")
 target_marker = NodePath("../../Cafe/TargetMarker")
 
-[node name="Sprite3D" type="Sprite3D" parent="NPC3"]
+[node name="NPC3_Sprite3D" type="Sprite3D" parent="NPC3"]
+unique_name_in_owner = true
 pixel_size = 0.0013
 billboard = 1
 texture = ExtResource("7_t6jrm")
@@ -346,6 +364,7 @@ shape = SubResource("BoxShape3D_t6jrm")
 visible = false
 mesh = SubResource("BoxMesh_1fqjn")
 
+[connection signal="timeout" from="3d_control/final_timer" to="3d_control" method="_on_final_timer_timeout"]
 [connection signal="npc_entered" from="NPC/EntranceBehaviour" to="3d_control" method="_on_entrance_behaviour_npc_entered"]
 [connection signal="npc_entered" from="NPC2/EntranceBehaviour2" to="3d_control" method="_on_entrance_behaviour_npc_entered"]
 [connection signal="npc_entered" from="NPC3/EntranceBehaviour3" to="3d_control" method="_on_entrance_behaviour_npc_entered"]

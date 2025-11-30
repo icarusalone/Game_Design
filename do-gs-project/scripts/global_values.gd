@@ -12,3 +12,5 @@ var added_chocolate = false
 var in_dialogue = false
 
 var current_npc_index = 0
+
+var finished_final = false

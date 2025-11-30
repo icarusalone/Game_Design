@@ -75,6 +75,14 @@ func interact() -> void:
 			DialogueManager.show_dialogue_balloon(load("res://dialogues/04_02.dialogue"))
 		else:
 			DialogueManager.show_dialogue_balloon(load("res://dialogues/04_false_order.dialogue"))
+	elif Global_Values.current_npc_index == 5:
+		if not Global_Values.added_coffee and not Global_Values.milkpumps >= 1 and not Global_Values.added_chocolate and not Global_Values.added_strawberry and not Global_Values.added_vanilla:
+			DialogueManager.show_dialogue_balloon(load("res://dialogues/05_empty.dialogue"))
+		elif Global_Values.added_coffee and Global_Values.milkpumps == 1 and not Global_Values.added_chocolate and not Global_Values.added_strawberry and not Global_Values.added_vanilla:
+			Global_Values.finished_final = true
+			DialogueManager.show_dialogue_balloon(load("res://dialogues/05_02.dialogue"))
+		else:
+			DialogueManager.show_dialogue_balloon(load("res://dialogues/05_false_order.dialogue"))
 	Global_Values.milkpumps = 0
 	Global_Values.added_coffee = false
 	Global_Values.added_strawberry = false
