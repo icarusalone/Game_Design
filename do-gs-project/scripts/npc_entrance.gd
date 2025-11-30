@@ -29,6 +29,13 @@ func walk_in() -> void:
 	# Emit signal once finished walking
 	emit_signal("npc_entered", npc)
 	
+	if Global_Values.current_npc_index == 1:
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_01.dialogue"))
+		Global_Values.in_dialogue = true
+	elif Global_Values.current_npc_index == 2:
+		DialogueManager.show_dialogue_balloon(load("res://dialogues/02_01.dialogue"))
+		Global_Values.in_dialogue = true
+	
 func walk_back() -> void:
 	var npc = get_parent()
 	if not npc or not entrance_marker:

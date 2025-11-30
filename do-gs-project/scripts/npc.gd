@@ -45,10 +45,11 @@ func _process(delta):
 	pass
 
 func interact() -> void:
-	if not Global_Values.added_coffee and not Global_Values.milkpumps >= 1 and not Global_Values.added_chocolate and not Global_Values.added_strawberry and not Global_Values.added_vanilla:
-		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_empty.dialogue"))
-	elif Global_Values.added_coffee and not Global_Values.added_chocolate and not Global_Values.added_strawberry and not Global_Values.added_vanilla:
-		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_02.dialogue"))
-	else:
-		DialogueManager.show_dialogue_balloon(load("res://dialogues/01_false_order.dialogue"))
-	Global_Values.in_dialogue = true
+	if Global_Values.current_npc_index == 1:
+		if not Global_Values.added_coffee and not Global_Values.milkpumps >= 1 and not Global_Values.added_chocolate and not Global_Values.added_strawberry and not Global_Values.added_vanilla:
+			DialogueManager.show_dialogue_balloon(load("res://dialogues/01_empty.dialogue"))
+		elif Global_Values.added_coffee and not Global_Values.added_chocolate and not Global_Values.added_strawberry and not Global_Values.added_vanilla:
+			DialogueManager.show_dialogue_balloon(load("res://dialogues/01_02.dialogue"))
+		else:
+			DialogueManager.show_dialogue_balloon(load("res://dialogues/01_false_order.dialogue"))
+		Global_Values.in_dialogue = true
