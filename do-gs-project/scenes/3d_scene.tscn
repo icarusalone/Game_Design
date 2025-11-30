@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://pwjq3agk8sd"]
+[gd_scene load_steps=31 format=3 uid="uid://pwjq3agk8sd"]
 
 [ext_resource type="Script" uid="uid://bf3q7o152j88x" path="res://scripts/player.gd" id="1_da8xo"]
 [ext_resource type="Script" uid="uid://dc6210jg0qjy0" path="res://scripts/3d_control.gd" id="1_gqk5c"]
 [ext_resource type="Script" uid="uid://cch1yj2sn7eai" path="res://scripts/npc.gd" id="2_gqk5c"]
 [ext_resource type="Script" uid="uid://bpti484c4846p" path="res://scripts/coffee_machine_3d.gd" id="3_io1gi"]
 [ext_resource type="Script" uid="uid://rxggklcwkagp" path="res://scripts/npc_entrance.gd" id="4_aw15n"]
+[ext_resource type="Texture2D" uid="uid://bnmoknaymdkt3" path="res://assets/sprites/npcs/goth.png" id="5_68u10"]
 [ext_resource type="PackedScene" uid="uid://bglk7n5ec18in" path="res://scenes/Cafe.glb" id="5_io1gi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0rql1"]
@@ -39,6 +40,8 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_da8xo"]
 albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_68u10"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gqk5c"]
 
@@ -124,6 +127,7 @@ script = ExtResource("2_gqk5c")
 shape = SubResource("SphereShape3D_2ox2i")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NPC"]
+visible = false
 mesh = SubResource("CapsuleMesh_da8xo")
 skeleton = NodePath("../CollisionShape3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_da8xo")
@@ -133,6 +137,17 @@ unique_name_in_owner = true
 script = ExtResource("4_aw15n")
 entrance_marker = NodePath("../../Cafe/EntranceMarker")
 target_marker = NodePath("../../Cafe/TargetMarker")
+
+[node name="Sprite3D" type="Sprite3D" parent="NPC"]
+pixel_size = 0.0013
+billboard = 1
+texture = ExtResource("5_68u10")
+
+[node name="InteractArea" type="Area3D" parent="NPC"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC/InteractArea"]
+transform = Transform3D(6.29, 0, 0, 0, 6.29, 0, 0, 0, 6.29, 0, 0, 0)
+shape = SubResource("SphereShape3D_68u10")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
