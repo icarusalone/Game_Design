@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://bpti484c4846p" path="res://scripts/coffee_machine_3d.gd" id="3_io1gi"]
 [ext_resource type="Texture2D" uid="uid://blrbxyaqvgqyc" path="res://assets/sprites/endings/bad_ending.png" id="3_jv4he"]
 [ext_resource type="Script" uid="uid://rxggklcwkagp" path="res://scripts/npc_entrance.gd" id="4_aw15n"]
-[ext_resource type="Texture2D" uid="uid://bnmoknaymdkt3" path="res://assets/sprites/npcs/goth.png" id="5_68u10"]
 [ext_resource type="PackedScene" uid="uid://bglk7n5ec18in" path="res://scenes/Cafe.glb" id="5_io1gi"]
 [ext_resource type="Texture2D" uid="uid://dfux8cgxwhnxo" path="res://assets/sprites/npcs/kid1.png" id="6_s25k7"]
+[ext_resource type="Texture2D" uid="uid://dorxiswwsg6aq" path="res://assets/sprites/gothwoman.png" id="7_4j3bx"]
 [ext_resource type="Texture2D" uid="uid://xxyuv7p7rxwy" path="res://assets/sprites/npcs/womandog.png" id="7_t6jrm"]
 [ext_resource type="Texture2D" uid="uid://o78jcs1ayn5h" path="res://assets/sprites/npcs/programmer.png" id="8_1fqjn"]
 
@@ -174,7 +174,7 @@ target_marker = NodePath("../../Cafe/TargetMarker")
 [node name="Sprite3D" type="Sprite3D" parent="NPC"]
 pixel_size = 0.0013
 billboard = 1
-texture = ExtResource("5_68u10")
+texture = ExtResource("7_4j3bx")
 
 [node name="InteractArea" type="Area3D" parent="NPC"]
 
