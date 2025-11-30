@@ -7,18 +7,35 @@ extends Node
 signal npc_entered(npc)
 
 func _ready():
-	# Place NPC at the entrance
-	get_parent().global_transform.origin = entrance_marker.global_transform.origin
-	#await get_tree().create_timer(5).timeout
-	#walk_in()
-	
-
-
-func walk_in():
 	var npc = get_parent()
+	if npc and entrance_marker:
+		# Place NPC at entrance
+		npc.global_transform.origin = entrance_marker.global_transform.origin
+	else:
+		push_error("EntranceBehaviour: missing parent or entrance_marker!")
+
+# Make this function awaitable
+func walk_in() -> void:
+	var npc = get_parent()
+	if not npc or not target_marker:
+		push_error("walk_in: missing parent or target_marker!")
+		return
+
 	while npc.global_transform.origin.distance_to(target_marker.global_transform.origin) > 0.1:
 		var direction = (target_marker.global_transform.origin - npc.global_transform.origin).normalized()
 		npc.global_translate(direction * walk_speed * get_process_delta_time())
 		await get_tree().process_frame
 
+	# Emit signal once finished walking
 	emit_signal("npc_entered", npc)
+	
+func walk_back() -> void:
+	var npc = get_parent()
+	if not npc or not entrance_marker:
+		push_error("walk_back: missing parent or entrance_marker!")
+		return
+
+	while npc.global_transform.origin.distance_to(entrance_marker.global_transform.origin) > 0.1:
+		var direction = (entrance_marker.global_transform.origin - npc.global_transform.origin).normalized()
+		npc.global_translate(direction * walk_speed * get_process_delta_time())
+		await get_tree().process_frame
