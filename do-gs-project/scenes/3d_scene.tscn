@@ -129,6 +129,7 @@ skeleton = NodePath("../CollisionShape3D")
 surface_material_override/0 = SubResource("StandardMaterial3D_da8xo")
 
 [node name="EntranceBehaviour" type="Node3D" parent="NPC" node_paths=PackedStringArray("entrance_marker", "target_marker")]
+unique_name_in_owner = true
 script = ExtResource("4_aw15n")
 entrance_marker = NodePath("../../Cafe/EntranceMarker")
 target_marker = NodePath("../../Cafe/TargetMarker")
@@ -215,3 +216,5 @@ shape = SubResource("BoxShape3D_t6jrm")
 [node name="notvisible_debuggingonly" type="MeshInstance3D" parent="wall_right"]
 visible = false
 mesh = SubResource("BoxMesh_1fqjn")
+
+[connection signal="npc_entered" from="NPC/EntranceBehaviour" to="3d_control" method="_on_entrance_behaviour_npc_entered"]

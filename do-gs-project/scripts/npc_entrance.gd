@@ -9,8 +9,8 @@ signal npc_entered(npc)
 func _ready():
 	# Place NPC at the entrance
 	get_parent().global_transform.origin = entrance_marker.global_transform.origin
-	await get_tree().create_timer(5).timeout
-	walk_in()
+	#await get_tree().create_timer(5).timeout
+	#walk_in()
 	
 
 

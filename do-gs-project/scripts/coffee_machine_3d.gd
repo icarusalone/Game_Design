@@ -5,12 +5,13 @@ var makecoffee
 
 #doesnt work yet
 func interact() -> void:
-	makecoffee = makecoffee_scence.instantiate()
+	if not Global_Values.in_dialogue:
+		makecoffee = makecoffee_scence.instantiate()
 	
-	var player = get_tree().current_scene.get_node("Player")
-	makecoffee.set_player(player)
+		var player = get_tree().current_scene.get_node("Player")
+		makecoffee.set_player(player)
 	
-	get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
-	get_tree().root.add_child(makecoffee)
-	%Player._free_mouse()
+		get_tree().current_scene.process_mode = Node.PROCESS_MODE_DISABLED
+		get_tree().root.add_child(makecoffee)
+		%Player._free_mouse()
 	
